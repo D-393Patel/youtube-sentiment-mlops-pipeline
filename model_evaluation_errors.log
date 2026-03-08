@@ -1,0 +1,4 @@
+2026-01-26 23:27:42,358 - model_evaluation - ERROR - Failed to complete model evaluation: check_array() got an unexpected keyword argument 'force_all_finite'
+2026-01-26 23:30:26,979 - model_evaluation - ERROR - Failed to complete model evaluation: check_array() got an unexpected keyword argument 'force_all_finite'
+2026-03-08 18:53:48,577 - model_evaluation - ERROR - Failed to complete model evaluation: No module named 'boto3'
+2026-03-08 19:04:49,071 - model_evaluation - ERROR - Failed to complete model evaluation: No module named 'boto3'

@@ -1,19 +1,20 @@
-# Use a slim Python image for a smaller footprint
-FROM python:3.10-slim
+# Use a slim Python 3.11 image for a modern and lightweight footprint
+FROM python:3.11-slim-bookworm
 
 # Set the working directory
 WORKDIR /app
 
-# Install system dependencies (required for some Python packages)
+# Install system dependencies
+# Bookworm is the newer Debian stable, offering better security and package support
 RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy only the requirements file first to leverage Docker layer caching
+# This prevents reinstalling all packages when you change source code
 COPY requirements.txt .
 
-# Install dependencies
-# We use --no-cache-dir to keep the image size small
+# Install dependencies with --no-cache-dir to keep the image size small
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the rest of the source code
@@ -27,5 +28,6 @@ ENV PYTHONPATH=/app
 # Expose the Flask port
 EXPOSE 5000
 
-# Default command
-CMD ["python", "flask_api/main.py"]
+# Command to run the application
+# Note: Use Gunicorn for production instead of 'python app.py'
+CMD ["gunicorn", "--bind", "0.0.0.0:5000", "app:app"]

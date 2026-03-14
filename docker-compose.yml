@@ -16,7 +16,7 @@ services:
     # Set the working directory to match your volume mapping
     working_dir: /app
     # Run the application using the correct path to main.py
-    command: python flask_api/main.py
+    command: python app.py
     # Optional: Add a healthcheck to ensure Docker knows if the API is actually alive
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:5000/"]

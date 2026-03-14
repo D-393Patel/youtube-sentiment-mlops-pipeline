@@ -10,3 +10,4 @@ celery
 redis
 requests
 python-dotenv
+keybert==0.8.5
